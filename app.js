@@ -8,7 +8,7 @@ let occupations = {
 let total = 0
 
 const occupationSelect = document.querySelector('#occupation-select')
-const container = document.querySelector('#container')
+const listContainer = document.querySelector('#list-container')
 const hourInput = document.querySelector('#hour-input')
 const submitBtn = document.querySelector('#submit')
 const totalDiv = document.querySelector('#total')
@@ -40,11 +40,13 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/19+23+35+39.3.1/all?startTi
         console.log(hourInput.value)
 
         let pay = Math.round(hourInput.value * occupations[selectedKey].rate * 100) / 100
-        total += pay
+        total += pay;
         rowDiv = document.createElement('div')
-        rowDiv.innerHTML = '<div>' + occupations[selectedKey].name + '</div><div>' + pay.toString().replace('.', ',') + ' €</div>'
-        container.append(rowDiv)
+        // rowDiv.innerHTML = '<div>' + occupations[selectedKey].name + '</div><div>' + pay.toString().replace('.', ',') + ' €</div>'
+        rowDiv.classList.add('list-item')
+        rowDiv.innerHTML = `<div class="list-item__occupation">${occupations[selectedKey].name}</div><div class="list-item__salary">${pay.toString().replace('.', ',')}€</div><div class="list-item__delete">×</div>`
+        listContainer.append(rowDiv)
 
-        totalDiv.innerHTML = 'Kokku: ' + total.toString().replace('.', ',') + '€'
+        totalDiv.innerHTML = total.toString().replace('.', ',') + '€'
     })
 })
