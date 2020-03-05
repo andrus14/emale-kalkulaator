@@ -31,6 +31,7 @@ select, input {
     padding: 0.25rem 0.125rem;
     border: none;
     border-bottom: 1px solid var(--black-30);
+    background: var(--white);
 }
 
 .container {
