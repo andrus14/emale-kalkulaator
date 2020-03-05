@@ -34,19 +34,17 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/19+23+35+39.3.1/all?startTi
 
         selectedKey = occupationSelect.value
 
-        console.log(selectedKey)
-        console.log(occupations[selectedKey].rate)
-        console.log(occupations[selectedKey].name)
-        console.log(hourInput.value)
-
-        let pay = Math.round(hourInput.value * occupations[selectedKey].rate * 100) / 100
+        let pay = hourInput.value * occupations[selectedKey].rate
         total += pay;
         rowDiv = document.createElement('div')
-        // rowDiv.innerHTML = '<div>' + occupations[selectedKey].name + '</div><div>' + pay.toString().replace('.', ',') + ' €</div>'
         rowDiv.classList.add('list-item')
-        rowDiv.innerHTML = `<div class="list-item__occupation">${occupations[selectedKey].name}</div><div class="list-item__salary">${pay.toString().replace('.', ',')}€</div><div class="list-item__delete">×</div>`
+        rowDiv.innerHTML = `
+            <div class="list-item__occupation">${occupations[selectedKey].name}</div>
+            <div class="list-item__salary">${pay.toFixed(2).replace('.', ',')}€</div>
+            <div class="list-item__delete" data-pay-float="${pay}">×</div>
+        `
         listContainer.append(rowDiv)
 
-        totalDiv.innerHTML = total.toString().replace('.', ',') + '€'
+        totalDiv.innerHTML = total.toFixed(2).replace('.', ',') + '€'
     })
 })
