@@ -43,6 +43,13 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/19+23+35+39.3.1/all?startTi
             <div class="list-item__salary">${pay.toFixed(2).replace('.', ',')}€</div>
             <div class="list-item__delete" data-pay-float="${pay}">×</div>
         `
+        rowDiv.querySelector('.list-item__delete').addEventListener('click', (e) => {
+            const currentRow = e.currentTarget.parentNode
+            const pay = e.currentTarget.getAttribute('data-pay-float')
+            total -= pay
+            totalDiv.innerHTML = total.toFixed(2).replace('.', ',') + '€'
+            currentRow.parentNode.removeChild(currentRow)
+        })
         listContainer.append(rowDiv)
 
         totalDiv.innerHTML = total.toFixed(2).replace('.', ',') + '€'
