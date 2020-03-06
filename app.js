@@ -20,7 +20,7 @@ for ( const prop in occupations ) {
     occupationSelect.append(option)
 }
 
-fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627/19+23+35+39.3.1/all?startTime=2014&endTime=2014&dimensionAtObservation=allDimensions')
+fetch('https://cors-anywhere.herokuapp.com/http://andmebaas.stat.ee/sdmx-json/data/PA627/19+23+35+39.3.1/all?startTime=2014&endTime=2014&dimensionAtObservation=allDimensions')
 .then(response => response.json())
 .then(data => {
     data.structure.dimensions.observation[0].values.forEach((el, i) => {
